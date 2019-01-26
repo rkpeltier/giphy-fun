@@ -1,28 +1,36 @@
 $(document).ready(function() {
 
 //Some starter bands array
-var bands = ["The Beatles", "Blondie", "Queen", "The Doors"];
+var bands = ["Guitar", "Drums", "Bass Guitar", "Microphone"];
   
 //Make gifs show up
 function renderGifs() {
 
   //Giphy query url
-  var queryURL = "https://api.giphy.com/v1/gifs/search?=" + band + "api_key=WrV5rnOz4iJHVQjfvzOTyxiOIoLecRKA&limit=10";
+  var instrument = $(this).attr("data-name");
+  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + instrument + "&api_key=WrV5rnOz4iJHVQjfvzOTyxiOIoLecRKA&limit=10";
+  
   
   //Ajax
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response) {
+    console.log(queryURL);
     console.log(response);
     $("#display-gifs").empty();
-    
+    var results = response.data;
+
+    for (var i = 0; i < results.length; i++) {
     //Add function for adding gifs by clicking buttons
-    var imageUrl = response.data.image_original_url;
+    var imageUrl = results[i].images.fixed_height.url;
     var bandImage = $("<img>");
-    
+        
     bandImage.attr("src", imageUrl);
     bandImage.attr("atl", "band image");
+    //add src for animated and still
+    $("#display-gifs").prepend(bandImage);
+    }
   
   }); 
 }
@@ -44,13 +52,15 @@ function renderGifs() {
   //Add new band button
   $("#add-band").on("click", function(event) {
     event.preventDefault(); 
-    var band = $("#band-input").val().trim();
-    bands.push(band);
+    var rockBand = $("#band-input").val().trim();
+    bands.push(rockBand);
     renderButtons();
-
   });
 
+  //Buttons render gifs
+  $(document).on("click", ".bands-button", renderGifs);
+
   renderButtons();
-  renderGifs();
+
 
 });
