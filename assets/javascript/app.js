@@ -18,27 +18,29 @@ function renderGifs() {
   }).then(function(response) {
     console.log(queryURL);
     console.log(response);
-    $("#display-gifs").empty();
+  
+    //Looping through the data
     var results = response.data;
-
     for (var i = 0; i < results.length; i++) {
-    //Add function for adding gifs by clicking buttons
-    var imageUrl = results[i].images.fixed_height.url;
+    
     var bandImage = $("<img>");
-        
-    bandImage.attr("src", imageUrl);
-    bandImage.attr("atl", "band image");
-    //add src for animated and still
+    
+    //bandImage object
+    bandImage.attr({
+      "src": results[i].images.fixed_height.url,
+      "data-still": results[i].images.fixed_height_still.url,
+      "data-animate": results[i].images.fixed_height.url,
+      "alt": "band image"
+    })
+
     $("#display-gifs").prepend(bandImage);
     }
   
   }); 
 }
 
-
   //Buttons
   function renderButtons() {
-    $("#buttons-view").empty();
 
     for(var i = 0; i < bands.length; i++) {
       var a = $("<button>");
@@ -57,10 +59,23 @@ function renderGifs() {
     renderButtons();
   });
 
-  //Buttons render gifs
+  //Click buttons to get gifs
   $(document).on("click", ".bands-button", renderGifs);
 
+  //Make sure the buttons show up
   renderButtons();
+
+  //Play or Pause Gifs
+  $(document).on("click", "img", function(){
+    var current = $(this).attr("data-state");
+    if (current === "animate") {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    } else {
+        $(this).attr("src", $(this).attr("data-animate")); 
+        $(this).attr("data-state", "animate");
+    }
+  });
 
 
 });
