@@ -29,7 +29,7 @@ function renderGifs() {
     gifsnRating.addClass("gifs-rating");
     var p =$("<p>").text("Rating: " + rating);
     gifsnRating.append(bandImage);
-    gifsnRating.append(p);
+    gifsnRating.prepend(p);
     
     var bandImage = $("<img>");
     

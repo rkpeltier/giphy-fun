@@ -48,3 +48,10 @@ h1 {
     margin: auto;
     padding: 10px 12px;
 }
+
+p {
+    margin: auto;
+    padding: 10px;
+    font-size: 14pt;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
