@@ -8,7 +8,7 @@ function renderGifs() {
 
   //Giphy query url
   var instrument = $(this).attr("data-name");
-  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + instrument + "&api_key=WrV5rnOz4iJHVQjfvzOTyxiOIoLecRKA&limit=10";
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + instrument + "&api_key=WrV5rnOz4iJHVQjfvzOTyxiOIoLecRKA&limit=10";
   
   
   //Ajax
