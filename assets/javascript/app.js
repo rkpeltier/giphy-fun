@@ -22,6 +22,14 @@ function renderGifs() {
     //Looping through the data
     var results = response.data;
     for (var i = 0; i < results.length; i++) {
+
+    //Adding the rating because I forgot  
+    var gifsnRating = $("<div>"); 
+    var rating = results[i].rating;
+    gifsnRating.addClass("gifs-rating");
+    var p =$("<p>").text("Rating: " + rating);
+    gifsnRating.append(bandImage);
+    gifsnRating.append(p);
     
     var bandImage = $("<img>");
     
@@ -33,7 +41,7 @@ function renderGifs() {
       "alt": "band image"
     })
 
-    $("#display-gifs").prepend(bandImage);
+    $("#display-gifs").prepend(gifsnRating);
     }
   
   }); 
@@ -41,7 +49,7 @@ function renderGifs() {
 
   //Buttons
   function renderButtons() {
-
+    $("#buttons-view").empty();
     for(var i = 0; i < bands.length; i++) {
       var a = $("<button>");
       a.addClass("bands-button");
@@ -53,9 +61,11 @@ function renderGifs() {
 
   //Add new band button
   $("#add-band").on("click", function(event) {
-    event.preventDefault(); 
+    event.preventDefault();
+
     var rockBand = $("#band-input").val().trim();
     bands.push(rockBand);
+
     renderButtons();
   });
 

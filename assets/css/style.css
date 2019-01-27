@@ -1,4 +1,50 @@
-h1 {
-    text-align: center;
+body {
+    background-color: black;
+    color: #870202;
 }
 
+h1 {
+    margin: auto;
+    padding: 12px;
+    text-align: center;
+    color: red;
+    font-family: 'Finger Paint', cursive;
+    font-size: 28pt;
+}
+
+.bands-button {
+    padding: 10px 24px;
+    font-size: 14pt;
+    background-color: black;
+    color: #870202;
+    font-family: 'Finger Paint', cursive;
+    border-radius: 6px;
+
+}
+
+#add-band {
+    padding: 10px 24px;
+    font-size: 14pt;
+    background-color: black;
+    color: #870202;
+    font-family: 'Finger Paint', cursive;
+    border-radius: 6px;
+    position: relative;
+    margin-top: 15px;
+}
+
+#band-form {
+    margin: auto;
+    padding: 10px;
+}
+
+#rock-text {
+    padding: 15px;
+    font-size: 14pt;
+    font-family: 'Finger Paint', cursive;
+}
+
+.gifs-rating {
+    margin: auto;
+    padding: 10px 12px;
+}
